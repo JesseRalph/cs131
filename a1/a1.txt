@@ -1,0 +1,43 @@
+Task 1: What is your home directory path?
+
+/home/jesseralph
+
+
+Task 2a: Using only "ls" (and maybe "grep"), can you find out which file under directory /proc/ contains information about memory (mem) on your server?
+
+meminfo
+and
+iomem (to a lesser extent, since it had only zeroes)
+
+
+Task 2b: Which file contains information about the CPU's on your server?
+cpuinfo
+
+
+Task 3a: Identify the operating system version.
+VERSION="25.04 (Plucky Puffin)"
+
+
+Task 3b: Which file under /etc/ contains this information?
+os-release
+
+
+Task 4: Using the taxi dataset (2019-04.csv):
+Task 4a: Sort the pickup location IDs in order to find the most popular pickup locations on April 2nd, 2019. Identify the top 3 locations.
+
+Top 3 location IDs by Count:
+count location
+11102 236.0
+12380 237.0
+13279 161.0
+
+
+Task 4b: Sort the pickup location IDs in order to find the most popular pickup locations on April 10th, 2019. Identify the top 3 locations.
+
+Top 3 location IDs by Count:
+count location
+11242 236.0
+12905 237.0
+13200 161.0
+
+

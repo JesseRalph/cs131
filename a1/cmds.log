@@ -1,0 +1,57 @@
+Task 1: What is your home directory path?
+
+cd ~
+pwd
+
+
+Task 2a: Using only "ls" (and maybe "grep"), can you find out which file under directory /proc/ contains information about memory (mem) on your server?
+
+ls -a /proc/ | grep -i 'mem' #check for files with "mem" in the name, find two, iomem and meminfo
+cat /proc/iomem              #check contents to confirm
+cat /proc/meminfo            #check contents to confirm
+
+
+Task 2b: Which file contains information about the CPU's on your server?
+
+ls -a /proc/ | grep -i 'cpu'  #check for files with "cpu" in the name, find just 1
+cat /proc/cpuinfo             #check contents to confirm
+
+
+Task 3a: Identify the operating system version.
+ls -a /etc/ | grep -i "^os\|os$" #check for files starting or ending in "os", one of which is os-release
+cat /etc/os-release              #we see a line with the string VERSION=
+grep "VERSION=" /etc/os-release  #this gives us out final output, the answer
+
+
+Task 3b: Which file under /etc/ contains this information?
+ls -a /etc/ | grep -i "^os\|os$" #same command as 3a
+
+
+Task 4: Using the taxi dataset (2019-04.csv):
+
+Task 4a: Sort the pickup location IDs in order to find the most popular pickup locations on April 2nd, 2019. Identify the top 3 locations.
+
+answer:
+cut -d',' -f2,8 ../../2019-04.csv | grep "2019-04-02" | cut -d',' -f2 | sort -g | uniq -c | sort -g | tail -3
+
+breakdown:
+we pipe the result of each of these commands to be the argument of the command that follows:
+
+cut -d',' -f2,8 ../../2019-04.csv #we reduce each line to just
+                                  #the 2nd column, the pickup dates, and the
+                                  #the 8th column, the pickup location IDs 
+grep "2019-04-02" #only lines with the desired date (April 2nd, 2019) in the pickup column
+cut -d',' -f2     #we remove the pick up column, now we only have a list of pickup location IDs
+sort -g           #sort numerically
+uniq -c           #count occurences of each pickup location ID
+sort -g           #sort again, this time by the count we added to the start
+tail -3           #we look at the last 3, which are the largest 3 counts due to our sort
+
+
+Task 4b: Sort the pickup location IDs in order to find the most popular pickup locations on April 10th, 2019. Identify the top 3 locations.
+
+cut -d',' -f2,8 ../../2019-04.csv | grep "2019-04-10" | cut -d',' -f2 | sort -g | uniq -c | sort -g | tail -3
+
+breakdown:
+
+Same as 4a, but with the string "2019-04-10" in the place of "2019-04-02".
