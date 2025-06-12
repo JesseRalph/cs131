@@ -6,8 +6,7 @@ Task 1: What is your home directory path?
 Task 2a: Using only "ls" (and maybe "grep"), can you find out which file under directory /proc/ contains information about memory (mem) on your server?
 
 meminfo
-and
-iomem (to a lesser extent, since it had only zeroes)
+iomem #(to a lesser extent, since it had only zeroes)
 
 
 Task 2b: Which file contains information about the CPU's on your server?

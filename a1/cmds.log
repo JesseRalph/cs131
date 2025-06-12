@@ -38,7 +38,7 @@ breakdown:
 we pipe the result of each of these commands to be the argument of the command that follows:
 
 cut -d',' -f2,8 ../../2019-04.csv #we reduce each line to just
-                                  #the 2nd column, the pickup dates, and the
+                                  #the 2nd column, the pickup dates, and
                                   #the 8th column, the pickup location IDs 
 grep "2019-04-02" #only lines with the desired date (April 2nd, 2019) in the pickup column
 cut -d',' -f2     #we remove the pick up column, now we only have a list of pickup location IDs
