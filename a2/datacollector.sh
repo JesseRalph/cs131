@@ -43,9 +43,11 @@ else
 fi
 
 # Get abbreviated file data about the download using the file command
+
 file_type_data=$(file -b "$BASENAME")
 
 # Determine if it is a zip archive or an ASCII file
+# If it's a zip archive, unzip
 if echo "$file_type_data" | grep -q -i "zip"; then
     FILENAME="$BASENAME.zip"
     echo "Zip file found. Renaming to $FILENAME"
@@ -62,10 +64,27 @@ else
     exit 1
 fi
 
-#for csv_file in *.csv; do
-    #TODO Make a summary.md file. Include:
-    #   A list of all features (columns) with the index number
-    #   min/max/mean/standard deviation for numerical columns in a table format
-    #   the option for the user to identify features (column indices)
-    #   -the option to enter indices will be after the list of all features is displayed.
-#done
+for CSV_FILE in *.csv; do
+    FIRST_PASS="TEMP.md"
+    SUMMARY_FILE=$(echo "$CSV_FILE" | sed 's/\.csv/.md/')
+    awk -f ../summary_first_pass.awk "$CSV_FILE" > "$FIRST_PASS"
+
+    echo "## Feature Index and Names"
+    awk -F\; '{printf "%3d. %s\n", NR, $1}' "$FIRST_PASS"
+
+    echo "Enter desired feature indices, separated by spaces, or press Enter to skip."
+    read -a fields
+    sed_filter=""
+    sed_sep="p; "
+    for field_index in "${fields[@]}"; do
+        sed_filter+="$field_index$sed_sep"
+    done
+    awk -f ../summary_second_pass.awk "$FIRST_PASS" "$CSV_FILE" > "$SUMMARY_FILE"
+
+    if [ -z "$sed_filter" ]; then
+        cat "$SUMMARY_FILE"
+    else
+        sed sed_filter "$SUMMARY_FILE"
+    fi
+    rm "$FIRST_PASS"
+done

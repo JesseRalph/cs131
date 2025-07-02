@@ -25,6 +25,6 @@ END {
     {
         j=FIELD_NAME[i]
         STD_VAR[j]=((VARIANCE[j] / FNR)^0.5)
-        printf "%3d %-22s %6.2f %6.2f %6.2f %8.2e\n", i, j, MIN[j], MAX[j], AVG[j], STD_VAR[j]
+        printf "%3d %-22s %7.3f %7.3f %7.3f %7.3f\n", i, j, MIN[j], MAX[j], AVG[j], STD_VAR[j]
     }
 }
