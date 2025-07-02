@@ -64,27 +64,41 @@ else
     exit 1
 fi
 
+# We now iterate through all csv files in our working directory
 for CSV_FILE in *.csv; do
     FIRST_PASS="TEMP.md"
     SUMMARY_FILE=$(echo "$CSV_FILE" | sed 's/\.csv/.md/')
-    awk -f ../summary_first_pass.awk "$CSV_FILE" > "$FIRST_PASS"
-
-    echo "## Feature Index and Names"
+    # We do a first pass, calculating min, max, mean, and displaying feature list
+    awk -f ../summary_first_pass.awk "$CSV_FILE" > "$FIRST_PASS"    
+    echo "-------------------------------------------------------"
+    echo " Processing $CSV_FILE..."
+    echo "-------------------------------------------------------"
+    echo " Feature Index and Names"
+    # Display feature list
     awk -F\; '{printf "%3d. %s\n", NR, $1}' "$FIRST_PASS"
-
+    echo "-------------------------------------------------------"
     echo "Enter desired feature indices, separated by spaces, or press Enter to skip."
     read -a fields
+    # Given user fields "x y z..."
+    # We create a filter string for sed of the form "xp; yp; zp; ..."
     sed_filter=""
     sed_sep="p; "
     for field_index in "${fields[@]}"; do
-        sed_filter+="$field_index$sed_sep"
+        # Need to account for Summary output header
+        real_index=$((field_index + 1))
+        sed_filter+="$real_index$sed_sep"
     done
+    
+    # Generate second pass, calculating standard deviation
     awk -f ../summary_second_pass.awk "$FIRST_PASS" "$CSV_FILE" > "$SUMMARY_FILE"
 
+    # If the user specified features, we use sed to print only those lines of our summary.
+    # Otherwise, we cat the whole file.
     if [ -z "$sed_filter" ]; then
         cat "$SUMMARY_FILE"
     else
         sed -n "$sed_filter" "$SUMMARY_FILE"
     fi
+    #To keep the workspace neat, we remove the intermediate md file generated
     rm "$FIRST_PASS"
 done

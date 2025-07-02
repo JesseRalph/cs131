@@ -21,10 +21,11 @@ BEGIN {
     }
 }
 END {
+    printf "%5s %-22s %7s %7s %7s %7s\n", "Index", "Feature", "Min", "Max", "Mean", "StdDev"
     for (i=1; i<=NF; i++)
     {
         j=FIELD_NAME[i]
         STD_VAR[j]=((VARIANCE[j] / FNR)^0.5)
-        printf "%3d %-22s %7.3f %7.3f %7.3f %7.3f\n", i, j, MIN[j], MAX[j], AVG[j], STD_VAR[j]
+        printf "%5d %-22s %7.3f %7.3f %7.3f %7.3f\n", i, j, MIN[j], MAX[j], AVG[j], STD_VAR[j]
     }
 }
