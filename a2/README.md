@@ -31,7 +31,7 @@ Creating directory wine+quality
 Moving to wine+quality
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-100 91353    0 91353    0     0   527k      0 --:--:-- --:--:-- --:--:--  531k
+100 91353    0 91353    0     0   539k      0 --:--:-- --:--:-- --:--:--  540k
 Data downloaded successfully
 Zip file found. Renaming to wine+quality.zip
 Unzipping...
@@ -90,6 +90,7 @@ Index Feature                    Min     Max    Mean  StdDev
 -------------------------------------------------------
 Enter desired feature indices, separated by spaces, or press Enter to skip.
 3 5 11
+Index Feature                    Min     Max    Mean  StdDev
     3 citric acid              0.000   1.660   0.334   0.121
     5 chlorides                0.009   0.346   0.046   0.022
    11 alcohol                  8.000  14.200  10.512   1.230

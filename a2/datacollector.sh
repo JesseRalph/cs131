@@ -97,7 +97,7 @@ for CSV_FILE in *.csv; do
     if [ -z "$sed_filter" ]; then
         cat "$SUMMARY_FILE"
     else
-        sed -n "$sed_filter" "$SUMMARY_FILE"
+        sed -n "1p; $sed_filter" "$SUMMARY_FILE"
     fi
     #To keep the workspace neat, we remove the intermediate md file generated
     rm "$FIRST_PASS"
