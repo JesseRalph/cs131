@@ -84,7 +84,7 @@ for CSV_FILE in *.csv; do
     if [ -z "$sed_filter" ]; then
         cat "$SUMMARY_FILE"
     else
-        sed sed_filter "$SUMMARY_FILE"
+        sed -n "$sed_filter" "$SUMMARY_FILE"
     fi
     rm "$FIRST_PASS"
 done
