@@ -1,2 +1,4 @@
 *.csv
 a2/*/
+temp/*
+worksheet2/*
