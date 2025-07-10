@@ -1,0 +1,19 @@
+#!/bin/bash
+# This file can also act as a bash script to create the required output in a3.txt.
+
+
+# To use this file as a bash script, enter the following in the terminal:
+#
+# chmod 500 cmnd.log
+# ./cmnd.log
+
+# Alternatively, you can just enter the following two lines into the command line.
+# The first command generates the required output text and overwrites a3.txt with it.
+
+awk -f grader.awk grades.csv > a3.txt
+
+# The second command just displays that text to stdout.
+
+cat a3.txt
+
+
