@@ -7,3 +7,9 @@
 | 104        | David        | 195         | 65            | Fail   |   lowest score |
 | 105        | Eve          | 265         | 88            | Pass   |                |
 -------------------------------------------------------------------------------------
+
+TASK 1 The sum_of_grades associative array is on line 110 of grader.awk:
+       >>> Sum_of_Grades[student_id]+=grade
+TASKS 2 and 3 are all in appropriately named functions at the top of the file.
+TASKS 4 and 5 are in the above table.
+

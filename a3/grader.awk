@@ -1,10 +1,10 @@
-# Determines the average score of a student, 
+# TASK 2.1: Determines the average score of a student, 
 # given the sum of their scores and number of classes.
 function calculate_average(sum, count) {
     return (sum/count)
 }
 
-# Determines pass/fail status, given the average score as input.
+# TASK 2.2: Determines pass/fail status, given the average score as input.
 function calculate_status(avg_score) {
     if (avg_score >= 70)
         return "Pass"
@@ -153,4 +153,10 @@ END {
         printf formatting, id, name, total, average, pf_status, special
     }
     print "-------------------------------------------------------------------------------------"
+    print ""
+    print "TASK 1 The sum_of_grades associative array is on line 110 of grader.awk:"
+    print "       >>> Sum_of_Grades[student_id]+=grade"
+    print "TASKS 2 and 3 are all in appropriately named functions at the top of the file."
+    print "TASKS 4 and 5 are in the above table."
+    print ""
 }
